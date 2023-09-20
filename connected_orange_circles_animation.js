@@ -34,12 +34,14 @@ function getOrangeCircleCenter(grayCircleCenter, offsetAngle) {
 function drawScene() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw the big circle
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, bigCircleRadius, 0, 2 * Math.PI);
-    ctx.strokeStyle = "red";
-    ctx.stroke();
-
+	if (document.getElementById("redCircleCheckbox").checked) {
+		// Draw the big circle
+		ctx.beginPath();
+		ctx.arc(centerX, centerY, bigCircleRadius, 0, 2 * Math.PI);
+		ctx.strokeStyle = "orange";
+		ctx.stroke();
+	}
+	
 	if (path.length <= 0) {
 		for (let j = 0; j < countOrange; j++) {
 			path.push([]);
@@ -53,7 +55,7 @@ function drawScene() {
 			for (let i = 1; i < path[j].length; i++) {
 				ctx.lineTo(path[j][i].x, path[j][i].y);
 			}
-			ctx.strokeStyle = "blue";
+			ctx.strokeStyle = "rgb(200, 200, 255)";
 			ctx.stroke();
 		}
 	}
@@ -90,7 +92,7 @@ function drawScene() {
             orangeCircleCenters.forEach(ocCenter => {
                 ctx.beginPath();
                 ctx.arc(ocCenter.x, ocCenter.y, orangeCircleRadius, 0, 2 * Math.PI);
-                ctx.fillStyle = "orange";
+                ctx.fillStyle = "rgb(50, 50, 50)";//"orange";
                 ctx.fill();
             });
         }
